@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.arknightsserve.dao.UserDao">
+  <resultMap id="BaseResultMap" type="com.example.arknightsserve.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="arkname" jdbcType="VARCHAR" property="arkname" />
+    <result column="arkid" jdbcType="VARCHAR" property="arkid" />
+    <result column="arklv" jdbcType="INTEGER" property="arklv" />
+    <result column="arkvoice" jdbcType="VARCHAR" property="arkvoice" />
+    <result column="arklongmenbi" jdbcType="INTEGER" property="arklongmenbi" />
+    <result column="arkhechengyu" jdbcType="INTEGER" property="arkhechengyu" />
+    <result column="arkyuanshi" jdbcType="INTEGER" property="arkyuanshi" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+
+  <select id="findByPwd"  resultMap="BaseResultMap">
+    select *
+    from user
+    where account = #{account} and password = #{password}
+  </select>
+
+  <select id="findByAccount"  resultMap="BaseResultMap">
+    select *
+    from user
+    where account = #{account}
+  </select>
+
+  <insert id="insertByPwd" keyColumn="id" keyProperty="id" parameterType="com.example.arknightsserve.entity.User" useGeneratedKeys="true">
+    insert into user (arkname, arkid, arklv,
+                      arkvoice, arklongmenbi, arkhechengyu,
+                      arkyuanshi, account, `password`
+    )
+    values (#{arkname,jdbcType=VARCHAR}, #{arkid,jdbcType=VARCHAR}, #{arklv,jdbcType=INTEGER},
+            #{arkvoice,jdbcType=VARCHAR}, #{arklongmenbi,jdbcType=INTEGER}, #{arkhechengyu,jdbcType=INTEGER},
+            #{arkyuanshi,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+           )
+  </insert>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.arknightsserve.entity.User" useGeneratedKeys="true">
+    insert into user (arkname, arkid, arklv, 
+      arkvoice, arklongmenbi, arkhechengyu, 
+      arkyuanshi, account, `password`
+      )
+    values (#{arkname,jdbcType=VARCHAR}, #{arkid,jdbcType=VARCHAR}, #{arklv,jdbcType=INTEGER}, 
+      #{arkvoice,jdbcType=VARCHAR}, #{arklongmenbi,jdbcType=INTEGER}, #{arkhechengyu,jdbcType=INTEGER}, 
+      #{arkyuanshi,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.arknightsserve.entity.User" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="arkname != null">
+        arkname,
+      </if>
+      <if test="arkid != null">
+        arkid,
+      </if>
+      <if test="arklv != null">
+        arklv,
+      </if>
+      <if test="arkvoice != null">
+        arkvoice,
+      </if>
+      <if test="arklongmenbi != null">
+        arklongmenbi,
+      </if>
+      <if test="arkhechengyu != null">
+        arkhechengyu,
+      </if>
+      <if test="arkyuanshi != null">
+        arkyuanshi,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="arkname != null">
+        #{arkname,jdbcType=VARCHAR},
+      </if>
+      <if test="arkid != null">
+        #{arkid,jdbcType=VARCHAR},
+      </if>
+      <if test="arklv != null">
+        #{arklv,jdbcType=INTEGER},
+      </if>
+      <if test="arkvoice != null">
+        #{arkvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="arklongmenbi != null">
+        #{arklongmenbi,jdbcType=INTEGER},
+      </if>
+      <if test="arkhechengyu != null">
+        #{arkhechengyu,jdbcType=INTEGER},
+      </if>
+      <if test="arkyuanshi != null">
+        #{arkyuanshi,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.arknightsserve.entity.User">
+    update user
+    <set>
+      <if test="arkname != null">
+        arkname = #{arkname,jdbcType=VARCHAR},
+      </if>
+      <if test="arkid != null">
+        arkid = #{arkid,jdbcType=VARCHAR},
+      </if>
+      <if test="arklv != null">
+        arklv = #{arklv,jdbcType=INTEGER},
+      </if>
+      <if test="arkvoice != null">
+        arkvoice = #{arkvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="arklongmenbi != null">
+        arklongmenbi = #{arklongmenbi,jdbcType=INTEGER},
+      </if>
+      <if test="arkhechengyu != null">
+        arkhechengyu = #{arkhechengyu,jdbcType=INTEGER},
+      </if>
+      <if test="arkyuanshi != null">
+        arkyuanshi = #{arkyuanshi,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.arknightsserve.entity.User">
+    update user
+    set arkname = #{arkname,jdbcType=VARCHAR},
+      arkid = #{arkid,jdbcType=VARCHAR},
+      arklv = #{arklv,jdbcType=INTEGER},
+      arkvoice = #{arkvoice,jdbcType=VARCHAR},
+      arklongmenbi = #{arklongmenbi,jdbcType=INTEGER},
+      arkhechengyu = #{arkhechengyu,jdbcType=INTEGER},
+      arkyuanshi = #{arkyuanshi,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
