@@ -14,6 +14,12 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
 
+  <select id="findById"  resultMap="BaseResultMap">
+    select *
+    from user
+    where id = #{id}
+  </select>
+
   <select id="findByPwd"  resultMap="BaseResultMap">
     select *
     from user

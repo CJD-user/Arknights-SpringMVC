@@ -2,6 +2,7 @@ package com.example.arknightsserve.service;
 
 import com.example.arknightsserve.entity.Operators;
 import com.example.arknightsserve.pojo.operatorPojo.AllOperatorResponse;
+import com.example.arknightsserve.pojo.operatorPojo.ChangeOperatorStatus;
 import com.example.arknightsserve.pojo.operatorPojo.OperatorRequest;
 import com.example.arknightsserve.pojo.operatorPojo.OperatorResponse;
 
@@ -14,5 +15,5 @@ public interface OperatorService {
 
     AllOperatorResponse getAllOwned(Integer id);
 
-    int UpdateMain(OperatorRequest req);
+    ChangeOperatorStatus UpdateMain(OperatorRequest req);
 }

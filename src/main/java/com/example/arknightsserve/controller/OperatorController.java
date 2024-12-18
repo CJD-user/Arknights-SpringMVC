@@ -31,10 +31,11 @@ public class OperatorController {
         System.out.println(id+"号用户发起所有已拥有干员资源的请求！");
         return JsonData.buildSuccess(operatorService.getAllOwned(id));
     }
-    @PutMapping("/changeMain")
+    @PostMapping("/updateMain")
     @ResponseBody
-    public JsonData UpdateMain( OperatorRequest req){
-        System.out.println(req.getUser().getId()+"号用户发起主页干员资源的更换！");
+    public JsonData UpdateMain(@RequestBody OperatorRequest req){
+        System.out.println("号用户发起主页id为"
+                +req+"的干员资源的更换！");
         return JsonData.buildSuccess(operatorService.UpdateMain(req));
     }
 

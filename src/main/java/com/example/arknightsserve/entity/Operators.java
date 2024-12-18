@@ -1,11 +1,15 @@
 package com.example.arknightsserve.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * operators
  * @author 
  */
+
 public class Operators implements Serializable {
     private Integer id;
 

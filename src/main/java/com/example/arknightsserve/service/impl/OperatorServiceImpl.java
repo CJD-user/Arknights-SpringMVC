@@ -2,8 +2,10 @@ package com.example.arknightsserve.service.impl;
 
 import com.example.arknightsserve.dao.OperatorsDao;
 import com.example.arknightsserve.dao.UserDao;
+import com.example.arknightsserve.dao.UserMainOperatorDao;
 import com.example.arknightsserve.entity.Operators;
 import com.example.arknightsserve.entity.User;
+import com.example.arknightsserve.entity.UserMainOperator;
 import com.example.arknightsserve.pojo.BadResponse;
 import com.example.arknightsserve.pojo.loginPojo.LoginResponse;
 import com.example.arknightsserve.pojo.operatorPojo.AllOperatorResponse;
@@ -25,6 +27,10 @@ public class OperatorServiceImpl implements OperatorService {
 
     @Autowired
     private OperatorsDao operatorsDao;
+
+    @Autowired
+    private UserMainOperatorDao userMainOperatorDao;
+
     @Override
     public OperatorResponse showOperators(Integer id) {
         Operators operators = operatorsDao.selectByUid(id);
@@ -45,8 +51,8 @@ public class OperatorServiceImpl implements OperatorService {
 
     @Override
     public ChangeOperatorStatus UpdateMain(OperatorRequest req) {
-        int userId = req.getUser().getId();
-        int operatorId = req.getOperators().getId();
+        int userId = req.getUserMainOperator().getUserId();
+        int operatorId = req.getUserMainOperator().getOperatorId();
 
         // 验证用户是否存在
         User user = userDao.findById(userId);
@@ -57,11 +63,11 @@ public class OperatorServiceImpl implements OperatorService {
         // 验证干员是否存在
         Operators operator = operatorsDao.findById(operatorId);
         if (operator == null) {
-            return new ChangeOperatorStatus(0, "干员不存在!");;
+            return new ChangeOperatorStatus(0, "干员不存在!");
         }
 
         // 查询用户和干员的关系
-        int result = operatorsDao.updateMain(userId, operatorId);
+        int result = userMainOperatorDao.updateMain(userId, operatorId);
         if (result > 0) {
             // 成功，返回 1
             return new ChangeOperatorStatus(1,"更新成功!");

@@ -19,4 +19,6 @@ public interface UserDao {
     User findByPwd(@Param("account") String account,@Param("password") String password);
     User findByAccount(@Param("account") String account);
     int insertByPwd(User user);
+
+    User findById(@Param("id") Integer id);
 }

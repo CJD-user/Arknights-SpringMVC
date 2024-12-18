@@ -23,4 +23,6 @@ public interface OperatorsDao {
     int updateByPrimaryKeySelective(Operators record);
 
     int updateByPrimaryKey(Operators record);
+
+    Operators findById(@Param("id") Integer id);
 }

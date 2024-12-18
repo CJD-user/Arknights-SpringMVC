@@ -7,5 +7,6 @@
     <mappers>
         <mapper resource="dao/UserDao.xml"/>
         <mapper resource="dao/OperatorsDao.xml"/>
+        <mapper resource="dao/UserMainOperatorDao"/>
     </mappers>
 </configuration>

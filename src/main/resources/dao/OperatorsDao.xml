@@ -15,6 +15,13 @@
   <sql id="Base_Column_List">
     id, thumbnail, fullImage, halfimg, `name`, cardtop, star, starlevel, `type`
   </sql>
+
+  <select id="findById"  resultMap="BaseResultMap">
+    select *
+    from operators
+    where id = #{id}
+  </select>
+
   <select id="selectByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     SELECT o.*
     FROM operators o
