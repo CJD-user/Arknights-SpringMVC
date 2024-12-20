@@ -1,6 +1,5 @@
 package com.example.arknightsserve.controller;
 
-import com.example.arknightsserve.pojo.loginPojo.LoginRequest;
 import com.example.arknightsserve.pojo.operatorPojo.OperatorRequest;
 import com.example.arknightsserve.service.OperatorService;
 import com.example.arknightsserve.util.JsonData;
@@ -34,8 +33,8 @@ public class OperatorController {
     @PostMapping("/updateMain")
     @ResponseBody
     public JsonData UpdateMain(@RequestBody OperatorRequest req){
-        System.out.println("号用户发起主页id为"
-                +req+"的干员资源的更换！");
+        System.out.println(req.getUserId()+"号用户发起主页id为"
+                +req.getOperatorId()+"的干员资源的更换！");
         return JsonData.buildSuccess(operatorService.UpdateMain(req));
     }
 

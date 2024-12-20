@@ -1,6 +1,7 @@
 package com.example.arknightsserve.dao;
 
 import com.example.arknightsserve.entity.UserMainOperator;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMainOperatorDao {
     int deleteByPrimaryKey(Integer id);
@@ -15,5 +16,5 @@ public interface UserMainOperatorDao {
 
     int updateByPrimaryKey(UserMainOperator record);
 
-    int updateMain(Integer userId,Integer operatorId);
+    int updateMain(@Param("userId") Integer userId,@Param("operatorId") Integer operatorId);
 }

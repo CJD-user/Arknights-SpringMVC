@@ -5,14 +5,10 @@ import com.example.arknightsserve.dao.UserDao;
 import com.example.arknightsserve.dao.UserMainOperatorDao;
 import com.example.arknightsserve.entity.Operators;
 import com.example.arknightsserve.entity.User;
-import com.example.arknightsserve.entity.UserMainOperator;
-import com.example.arknightsserve.pojo.BadResponse;
-import com.example.arknightsserve.pojo.loginPojo.LoginResponse;
 import com.example.arknightsserve.pojo.operatorPojo.AllOperatorResponse;
 import com.example.arknightsserve.pojo.operatorPojo.ChangeOperatorStatus;
 import com.example.arknightsserve.pojo.operatorPojo.OperatorRequest;
 import com.example.arknightsserve.pojo.operatorPojo.OperatorResponse;
-import com.example.arknightsserve.pojo.signupPojo.SignupResponse;
 import com.example.arknightsserve.service.OperatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +47,8 @@ public class OperatorServiceImpl implements OperatorService {
 
     @Override
     public ChangeOperatorStatus UpdateMain(OperatorRequest req) {
-        int userId = req.getUserMainOperator().getUserId();
-        int operatorId = req.getUserMainOperator().getOperatorId();
+        int userId = req.getUserId();
+        int operatorId = req.getOperatorId();
 
         // 验证用户是否存在
         User user = userDao.findById(userId);
